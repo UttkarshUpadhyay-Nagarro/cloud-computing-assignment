@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claim Document Portal</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <p class="eyebrow">NAGP Cloud Workshop</p>
+      <h1>Submit claim documents</h1>
+      <p class="intro">Upload identity proofs, claim forms, or supporting evidence securely.</p>
+      <form id="upload-form">
+        <label class="dropzone" for="document">
+          <span class="dropzone-title">Choose a document</span>
+          <span id="file-name">PDF, JPG, PNG or DOCX up to 10 MB</span>
+          <input id="document" name="document" type="file" required />
+        </label>
+        <button type="submit">Upload document</button>
+      </form>
+      <p id="status" class="status" role="status"></p>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

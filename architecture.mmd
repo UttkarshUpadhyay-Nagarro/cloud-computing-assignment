@@ -1,0 +1,35 @@
+flowchart LR
+    User((Customer)) --> ALB[Internet-facing Application Load Balancer]
+    subgraph VPC[Single VPC 10.0.0.0/16]
+      IGW[Internet Gateway]
+      NAT[NAT Gateway]
+      subgraph AZ1[Availability Zone A]
+        PubA[Public subnet]
+        AppA[Private application subnet]
+        DbA[Private database subnet]
+      end
+      subgraph AZ2[Availability Zone B]
+        PubB[Public subnet]
+        AppB[Private application subnet]
+        DbB[Private database subnet]
+      end
+      ALB --> PubA
+      ALB --> PubB
+      ASG[EC2 Auto Scaling Group] --- AppA
+      ASG --- AppB
+      RDS[(Private Amazon RDS PostgreSQL)] --- DbA
+      RDS --- DbB
+      Lambda[AWS Lambda in private app subnets] --- AppA
+      Lambda --- AppB
+      AppA -. S3 Gateway Endpoint .-> S3[(Private S3 bucket)]
+      AppB -. S3 Gateway Endpoint .-> S3
+      Lambda -. Secrets Manager Interface Endpoint .-> Secrets[Secrets Manager]
+      Lambda -. CloudWatch Logs Interface Endpoint .-> Logs[CloudWatch Logs]
+      S3 -- ObjectCreated event --> Lambda
+      Lambda --> RDS
+      IGW -. public route .-> PubA
+      IGW -. public route .-> PubB
+      NAT -. private subnet egress .-> AppA
+      NAT -. private subnet egress .-> AppB
+      IGW --- NAT
+    end

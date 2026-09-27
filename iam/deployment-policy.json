@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "WorkshopDeploymentServices",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:*", "elasticloadbalancing:*", "autoscaling:*", "s3:*",
+        "lambda:*", "rds:*", "secretsmanager:*", "logs:*", "cloudwatch:*", "sns:*",
+        "iam:CreateRole", "iam:DeleteRole", "iam:GetRole", "iam:PassRole", "iam:TagRole", "iam:ListRolePolicies", "iam:GetRolePolicy", "iam:ListAttachedRolePolicies",
+        "iam:PutRolePolicy", "iam:DeleteRolePolicy", "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy", "iam:CreateInstanceProfile", "iam:DeleteInstanceProfile",
+        "iam:AddRoleToInstanceProfile", "iam:RemoveRoleFromInstanceProfile", "iam:TagInstanceProfile",
+        "iam:CreateServiceLinkedRole", "iam:ListRoles", "iam:ListInstanceProfiles", "iam:ListInstanceProfilesForRole",
+        "iam:GetInstanceProfile", "iam:GetPolicy", "iam:GetPolicyVersion",
+        "iam:UntagRole", "iam:UntagInstanceProfile"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
